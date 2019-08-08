@@ -8,13 +8,24 @@
 
 import UIKit
 
-class ViewController: UIViewController {
-
+class ViewController1: UIViewController,EmailSubmissionDelegate {
+    
+    @IBOutlet weak var emailLabel: UILabel!
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+    }
+    
+    func emailSubmitted(email: String) {
+        emailLabel.text = "Default Email: \(email)"
+    }
+    
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let vc2 = segue.destination as! ViewController2
+        vc2.emailSubmissionDelegate = self
     }
 
-
+   
+    
 }
 

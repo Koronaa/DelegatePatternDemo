@@ -8,23 +8,22 @@
 
 import UIKit
 
+protocol EmailSubmissionDelegate {
+    func emailSubmitted(email:String)
+}
+
 class ViewController2: UIViewController {
 
+    @IBOutlet weak var defultEmailTextField: UITextField!
+    var emailSubmissionDelegate:EmailSubmissionDelegate?
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    @IBAction func okButtonOnTapped(_ sender: Any) {
+        emailSubmissionDelegate?.emailSubmitted(email: defultEmailTextField.text ?? "N/A")
+        self.dismiss(animated: true, completion: nil)
     }
-    */
-
+    
+  
 }
